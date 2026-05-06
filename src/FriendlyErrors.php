@@ -20,6 +20,11 @@ class FriendlyErrors
 	{
 		if (file_exists($executable)) return;
 
+		/** Added for tesseract path fix */
+		$secondaryExecutable = '/usr/bin/tesseract';
+		if (file_exists($secondaryExecutable)) return;
+		/** End of path fix */
+
 		$cmd = stripos(PHP_OS, 'win') === 0
 			? 'where.exe '.Command::escape($executable).' > NUL 2>&1'
 			: 'type '.Command::escape($executable).' > /dev/null 2>&1';

@@ -29,7 +29,10 @@ class Command
 		$cmd[] = $this->useFileAsInput ? self::escape($this->image) : "-";
 		$cmd[] = $this->useFileAsOutput ? self::escape($this->getOutputFile(false)) : "-";
 
-		$version = $this->getTesseractVersion();
+		// $version = $this->getTesseractVersion();
+		/** Added for version fix */
+		$version = '4.1.1';
+		/** End of version fix */
 
 		foreach ($this->options as $option) {
 			$cmd[] = is_callable($option) ? $option($version) : "$option";
